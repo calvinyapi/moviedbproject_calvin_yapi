@@ -7,6 +7,7 @@ import 'package:moviedbproject_calvin_yapi/services/MovieResponseService.dart';
 import 'package:dart_date/dart_date.dart';
 
 import '../models/Movie.dart';
+import 'MovieView.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
                     width: 450,
                     child: ListView.separated(
                       separatorBuilder: (BuildContext context, int index) =>
-                         const SizedBox(
+                          const SizedBox(
                         height: 15,
                       ),
                       shrinkWrap: true,
@@ -59,6 +60,32 @@ class _HomeState extends State<Home> {
                       itemBuilder: (BuildContext context, int index) {
                         return Card(
                           child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MovieView(
+                                  title: results[index]
+                                      .original_title
+                                      .toString(),
+                                  overview: results[index]
+                                      .overview
+                                      .toString(),
+                                  poster_path: results[index].poster_path.toString(),
+                                  release_date: Date.parse(
+                                      (results[index]
+                                          .release_date
+                                          .toString()),
+                                      locale: 'fr_FR')
+                                      .toHumanString()
+                                      .toString(),
+                                 /* runtime:results[index].runtime!.toInt(),*/ )
+
+
+
+
+                                ));
+                              print(results[index].runtime!.toInt());
+                            },
                             child: Row(
                               children: [
                                 SizedBox(
@@ -73,11 +100,12 @@ class _HomeState extends State<Home> {
                                   child: Column(
                                     children: [
                                       Text(
-                                          results[index]
-                                              .original_title
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
+                                        results[index]
+                                            .original_title
+                                            .toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                       Text(Date.parse(
                                               (results[index]
                                                   .release_date
@@ -101,7 +129,7 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 }
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               },
             ),
           ),
