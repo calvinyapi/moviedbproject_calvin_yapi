@@ -10,9 +10,8 @@ class Movie {
   String? release_date;
   String? overview;
   String? poster_path;
-
-
-    Movie({ this.id, this.original_title, this.release_date, this.overview, this.poster_path});
+  String? runtime;
+    Movie({ this.id, this.original_title, this.release_date, this.overview, this.poster_path, this.runtime});
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
   Map<String, dynamic> toJson() => _$MovieToJson(this);

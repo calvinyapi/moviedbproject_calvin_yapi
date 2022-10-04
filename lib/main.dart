@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviedbproject_calvin_yapi/Home.dart';
+import 'package:moviedbproject_calvin_yapi/pages/Home.dart';
 
 void main() {
   runApp(const MyApp());
